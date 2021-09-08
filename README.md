@@ -22,12 +22,13 @@ Criar uma aplicação em uma linguagem de programação de sua preferência (cas
 
 **Pré-requisito:** Java 11
 
+**OBS:** Se ao tentar executar o comando de execução do projeto e apresentar o seguinte erro **"}" foi inesperado neste momento**, basta fazer o clone do repositório em um diretório raiz, como o **C:** por exemplo.
+
 ```bash
-#Clone o repositório
+#Faça o clone do repositório (de preferência na raiz do C:):
 git clone https://github.com/jcleonel/Desafio-Tunts.git
 
-# Acesse a pasta do projeto:
-cd Desafio-Tunts
+# Acesse a pasta do projeto com o cmd
 
 # Execute o projeto via cmd com o seguinte comando:
 mvnw spring-boot:run
