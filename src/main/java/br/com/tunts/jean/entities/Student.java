@@ -1,4 +1,4 @@
-package com.tunts.jean.entities;
+package br.com.tunts.jean.entities;
 
 import java.util.Objects;
 
@@ -164,5 +164,5 @@ public class Student {
 		builder.append("]");
 		return builder.toString();
 	}
-
+	
 }

@@ -1,4 +1,4 @@
-package com.tunts.jean;
+package br.com.tunts.jean;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
