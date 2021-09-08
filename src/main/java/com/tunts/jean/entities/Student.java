@@ -24,35 +24,38 @@ public class Student {
 		this.testGrade1 = testGrade1;
 		this.testGrade2 = testGrade2;
 		this.testGrade3 = testGrade3;
-		failedByAverageGrade();
+		failedByAverageGradeOrAbsence();
 	}
 	
-	private void failedByAverageGrade() {
-		if (!failedByAbsence()) {
+	//Method that calculates the student's situation according to grade and class attendance
+	private void failedByAverageGradeOrAbsence() {
+		if (failedByAbsence()) {
 			this.situation = "Reprovado por Falta";
 		}
 		
-		if (getGradeAverage() >= 7 && failedByAbsence()) {
+		if (getGradeAverage() >= 7 && !failedByAbsence()) {
 			this.situation = "Aprovado";
 		}
 		
-		if (getGradeAverage() < 7 &&  getGradeAverage() >= 5 && failedByAbsence()) {
+		if (getGradeAverage() < 7 &&  getGradeAverage() >= 5 && !failedByAbsence()) {
 			this.situation = "Exame Final";
 			this.gradeFinalApproval = 10 - getGradeAverage();
 		}
 		
-		if (getGradeAverage() < 5) {
+		if (getGradeAverage() < 5 && !failedByAbsence()) {
 			this.situation = "Reprovado por Nota";
 		}
 	}
 	
+	//Method returns true or false if the student doesn't have the minimum frequency for approval
 	private boolean failedByAbsence() {
-		if ( (60 * 0.25) < absence ) {
-			return false;
+		if (absence > (60 * 0.25)) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
+	//Method for calculating the student's average
 	private Double getGradeAverage() {
 		return Math.ceil(((testGrade1 + testGrade2 + testGrade3) / 10) / 3); 
 	}
