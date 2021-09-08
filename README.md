@@ -34,3 +34,13 @@ git clone https://github.com/jcleonel/Desafio-Tunts.git
 mvnw spring-boot:run
 ```
 
+
+
+### Referências
+
+[Java Quickstart](https://developers.google.com/sheets/api/quickstart/java) 
+
+[Google Sheets API Overview](https://developers.google.com/sheets/api/guides/concepts)
+
+[Reading & Writing Cell Values](https://developers.google.com/sheets/api/guides/values)
+
