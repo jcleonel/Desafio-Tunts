@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
+
 import br.com.tunts.jean.constants.Constants;
 import br.com.tunts.jean.entities.Student;
 import br.com.tunts.jean.security.SheetAuthorization;
@@ -56,9 +57,8 @@ public class SheetService {
 	
 	@SuppressWarnings("unused")
 	//Saving student's situation in the spreadsheet
-	public void setSheet() throws IOException, InterruptedException {
+	public void setSheet() throws IOException {
 		for (int i = 0; i < students.size(); i++) {
-			Thread.sleep(1300);
 			System.out.println("Saving student " + students.get(i).getName() +"'s situation in the spreadsheet...");
 			ValueRange situation = new ValueRange().setValues(Arrays.asList(Arrays.asList(students.get(i).getSituation())));
 			UpdateValuesResponse result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "G" + (i + 4), situation)
@@ -69,21 +69,5 @@ public class SheetService {
 					.setValueInputOption("RAW").execute();			
 		}
 	}
-	
-	@SuppressWarnings("unused")
-	//Cleaning the spreadsheet
-	public void cleanSheet() throws IOException, InterruptedException {
-		System.out.println("Cleaning the spreadsheet... Whait please...");
-		for (int i = 0; i < students.size(); i++) {	
-			Thread.sleep(1300);
-			ValueRange situation = new ValueRange().setValues(Arrays.asList(Arrays.asList("")));
-			UpdateValuesResponse result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "G" + (i + 4), situation)
-					.setValueInputOption("RAW").execute();
-				
-			ValueRange gradeFinalApproval = new ValueRange().setValues(Arrays.asList(Arrays.asList("")));
-			result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "H" + (i + 4), gradeFinalApproval)
-					.setValueInputOption("RAW").execute();			
-		}
-	}
-	
+			
 }
