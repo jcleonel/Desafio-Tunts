@@ -56,14 +56,31 @@ public class SheetService {
 	
 	@SuppressWarnings("unused")
 	//Saving student's situation in the spreadsheet
-	public void setSheet() throws IOException {
+	public void setSheet() throws IOException, InterruptedException {
 		for (int i = 0; i < students.size(); i++) {
-			logger.info("Saving student " + students.get(i).getName() +"'s situation in the spreadsheet...");
+			Thread.sleep(1300);
+			System.out.println("Saving student " + students.get(i).getName() +"'s situation in the spreadsheet...");
 			ValueRange situation = new ValueRange().setValues(Arrays.asList(Arrays.asList(students.get(i).getSituation())));
 			UpdateValuesResponse result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "G" + (i + 4), situation)
 					.setValueInputOption("RAW").execute();
 				
 			ValueRange gradeFinalApproval = new ValueRange().setValues(Arrays.asList(Arrays.asList(students.get(i).getGradeFinalApproval())));
+			result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "H" + (i + 4), gradeFinalApproval)
+					.setValueInputOption("RAW").execute();			
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	//Cleaning the spreadsheet
+	public void cleanSheet() throws IOException, InterruptedException {
+		System.out.println("Cleaning the spreadsheet... Whait please...");
+		for (int i = 0; i < students.size(); i++) {	
+			Thread.sleep(1300);
+			ValueRange situation = new ValueRange().setValues(Arrays.asList(Arrays.asList("")));
+			UpdateValuesResponse result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "G" + (i + 4), situation)
+					.setValueInputOption("RAW").execute();
+				
+			ValueRange gradeFinalApproval = new ValueRange().setValues(Arrays.asList(Arrays.asList("")));
 			result = sheetService.spreadsheets().values().update(Constants.SPREADSHEET_ID, "H" + (i + 4), gradeFinalApproval)
 					.setValueInputOption("RAW").execute();			
 		}
